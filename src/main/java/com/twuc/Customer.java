@@ -59,8 +59,4 @@ public class Customer {
         result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
         return result;
     }
-
-    public String statementInHtmlFormat() {
-        return null;
-    }
 }

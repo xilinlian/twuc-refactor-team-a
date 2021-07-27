@@ -89,17 +89,13 @@ public class CustomerTest {
                 "You earned 4 frequent renter points", statement);
     }
 
-//    @Test
-    public void should_return_statement_in_html_format() {
-        customer.addRental(new Rental(new Movie("Over the Hedge", Movie.CHILDRENS), 5));
-        customer.addRental(new Rental(new Movie("Toy Story", Movie.NEW_RELEASE), 3));
-        customer.addRental(new Rental(new Movie("Green Book", Movie.REGULAR), 3));
-        String statement = customer.statementInHtmlFormat();
-        assertEquals("<h1>Rental Record for tom</h1>\n" +
-                "<p>Over the Hedge: 4.5<br>" +
-                "Toy Story: 9.0<br>" +
-                "Green Book: 3.5<br></p>" +
-                "<p>Amount owed is 17.0</p>\n" +
-                "<p>You earned 4 frequent renter points</p>", statement);
+    //@Test
+    public void should_return_statement_when_rent_new_release_movie_for_5_day() {
+        customer.addRental(new Rental(new Movie("Toy Story", Movie.NEW_RELEASE), 5));
+        String statement = customer.statement();
+        assertEquals("Rental Record for tom\n" +
+                "\tToy Story\t15.0\n" +
+                "Amount owed is 15.0\n" +
+                "You earned 0 frequent renter points", statement);
     }
 }
