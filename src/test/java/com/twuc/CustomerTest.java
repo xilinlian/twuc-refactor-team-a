@@ -89,7 +89,7 @@ public class CustomerTest {
                 "You earned 4 frequent renter points", statement);
     }
 
-    //@Test
+    @Test
     public void should_return_statement_when_rent_new_release_movie_for_5_day() {
         customer.addRental(new Rental(new Movie("Toy Story", Movie.NEW_RELEASE), 5));
         String statement = customer.statement();
@@ -97,5 +97,37 @@ public class CustomerTest {
                 "\tToy Story\t15.0\n" +
                 "Amount owed is 15.0\n" +
                 "You earned 0 frequent renter points", statement);
+    }
+
+    @Test
+    public void should_return_statement_when_rent_action_movie_for_2_day() {
+        customer.addRental(new Rental(new Movie("action1", Movie.ACTION), 2));
+        String statement = customer.statement();
+        assertEquals("Rental Record for tom\n" +
+                "\taction1\t10.0\n" +
+                "Amount owed is 10.0\n" +
+                "You earned 0 frequent renter points", statement);
+    }
+
+    @Test
+    public void should_return_statement_when_rent_action_movie_for_4_day() {
+        customer.addRental(new Rental(new Movie("action2", Movie.ACTION), 4));
+        String statement = customer.statement();
+        assertEquals("Rental Record for tom\n" +
+                "\taction2\t16.0\n" +
+                "Amount owed is 16.0\n" +
+                "You earned 2 frequent renter points", statement);
+    }
+
+    @Test
+    public void should_return_statement_when_rent_multiple_action_movies_for_5_day() {
+        customer.addRental(new Rental(new Movie("action3", Movie.ACTION), 1));
+        customer.addRental(new Rental(new Movie("action4", Movie.ACTION), 5));
+        String statement = customer.statement();
+        assertEquals("Rental Record for tom\n" +
+                "\taction3\t10.0\n" +
+                "\taction4\t20.0\n" +
+                "Amount owed is 30.0\n" +
+                "You earned 2 frequent renter points", statement);
     }
 }

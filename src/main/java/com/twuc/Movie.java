@@ -1,6 +1,8 @@
 package com.twuc;
 
 public class Movie {
+
+    public static final int ACTION = 3;
     public static final int CHILDRENS = 2;
     public static final int REGULAR = 0;
     public static final int NEW_RELEASE = 1;
